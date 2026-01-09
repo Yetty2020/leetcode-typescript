@@ -14,6 +14,7 @@ function removeElement(nums: number[], val: number): number {
         if (nums[i] !== val) {
             nums[k] = nums[i];
             // to increment the counter
+            
             k++;
         }
     }
