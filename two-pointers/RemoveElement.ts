@@ -21,3 +21,22 @@ function removeElement(nums: number[], val: number): number {
 
     return k;
 }
+
+
+function removeElement(nums: number[], val: number): number{
+    //we set a varible for the initial value of the no of items left in the array
+     let j = 0
+
+
+    // we loop throught the given array
+    for (let number of nums){
+
+        //we check if the current no is not equal to the given no
+        if (number !== val){
+            nums[j++] = number
+        }
+
+    }
+
+    return j
+}
