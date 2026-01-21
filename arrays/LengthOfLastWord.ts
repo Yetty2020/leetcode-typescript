@@ -10,12 +10,12 @@ function lengthOfLastWord(s: string): number{
     let length = 0
 
     // sentence may included trailing spaces, so we have to skip them
-    while (i >= 0 && s[i] === ''){
+    while (i >= 0 && s[i] === ' '){
         i--
         // since we are counting from the back, we decrease i
     }
 
-    while( i >= 0 && s[i] !== ''){
+    while( i >= 0 && s[i] !== ' '){
         // we increse the length for any non trailing space character we encounter
         length++
         i--
