@@ -23,7 +23,7 @@ function removeElement(nums: number[], val: number): number {
 }
 
 
-function removeElement(nums: number[], val: number): number{
+function removeElements(nums: number[], val: number): number{
     //we set a varible for the initial value of the no of items left in the array
      let j = 0
 
