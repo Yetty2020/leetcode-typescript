@@ -19,7 +19,7 @@ function climbStairs(n: number): number{
 
     // since we already got number of steps for 1 and 2, we'll continue from 3
     //looping through
-    for (let i = 3; i >= 0; i++){
+    for (let i = 3; i <= n; i++){
         // the pattern  is the each n number is the sum of previous two n
         // for n = 3; no of steps =  no of setps for 1 + no of steps for 2 = 1 + 2 = 3
         const current = prev1 + prev2
