@@ -1,0 +1,1 @@
+/*Fuction to calccuate the last person that orders something */

@@ -1,5 +1,5 @@
 /*
-Problem: Write a functiont that removes element in an array thats not equal to a given number (val) and returns the amount of characters left in the array , for example num = [1,2,3,2,2] val = 2, output = 2
+Problem: Write a functiont that removes element in an array thats not equal to a given number (val) and returns the amount of characters left in the array , for example num = [1,2,3,2,2] val = 2, output = 2 i.e 1 and 3
  */
 
 
