@@ -23,5 +23,5 @@ function isSameTree(p: TreeNode | null, q: TreeNode | null): boolean{
     if (p.val !== q.val) return false
 
     // in a binary tree, each node or treee consists of subtress, left and right. So we treat each subtree as a tree on its own and check if the nodes are the same using recursion
-    return isSameTree(p.left, q.left) && isSameTree(p.right,q.right)
+    return isSameTree(p.left, q.left) && isSameTree(p.right, q.right)
 }
