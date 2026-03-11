@@ -59,3 +59,30 @@ watchTutorialPromise().then((message) =>{
     console.log(message.name + " " + message.message)
 
 })
+
+//Another example assumng we have three simple promises created
+const recordVideoOne = newPromise((resolve, reject) =>{
+    resolve("Video 1 Recorded")
+})
+
+const recordVideoTwo = newPromise((resolve, reject) =>{
+    resolve("Video 2 Recorded")
+})
+
+const recordVideoThree = newPromise((resolve, reject) =>{
+    resolve("Video 3 Recorded")
+})
+
+
+
+// to call back this function we use the promise.all method to call everthing in parallel manner at once instead of waiting for them to run one after the other.
+// promise.all takes all the arrays we want to run
+promise.all([recordVideoOne,  recordVideoTwo, recordVideoThree]). then((messages) =>{
+    console.log(messages)
+    // This wil send an array of all the successful messsages from the promises
+})
+
+
+
+//Another method that we can use is promise.race, which returns the result of one without waiting for the others
+ 
