@@ -11,15 +11,15 @@ function searchInsert(nums: number[], target: number) : number{
     while (left <= right){
         const middleNumber = Math.floor((left + right) /2)
 
-        if (nums[mid] === target){
+        if (nums[midNumber] === target){
             return middleNumber
         }
 
-    if (nums[mid] < target){
-        left = mid + 1
+    if (nums[middleNumber] < target){
+        left = middleNumber + 1
     }
-    if (nums[mid] > target){
-        right = mid - 1
+    if (nums[middleNumber] > target){
+        right = middleNumber - 1
     }
     }
 
