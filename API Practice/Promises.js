@@ -61,15 +61,15 @@ watchTutorialPromise().then((message) =>{
 })
 
 //Another example assumng we have three simple promises created
-const recordVideoOne = newPromise((resolve, reject) =>{
+const recordVideoOne = new Promise((resolve, reject) =>{
     resolve("Video 1 Recorded")
 })
 
-const recordVideoTwo = newPromise((resolve, reject) =>{
+const recordVideoTwo = new Promise((resolve, reject) =>{
     resolve("Video 2 Recorded")
 })
 
-const recordVideoThree = newPromise((resolve, reject) =>{
+const recordVideoThree = new Promise((resolve, reject) =>{
     resolve("Video 3 Recorded")
 })
 
@@ -77,7 +77,7 @@ const recordVideoThree = newPromise((resolve, reject) =>{
 
 // to call back this function we use the promise.all method to call everthing in parallel manner at once instead of waiting for them to run one after the other.
 // promise.all takes all the arrays we want to run
-promise.all([recordVideoOne,  recordVideoTwo, recordVideoThree]). then((messages) =>{
+Promise.all([recordVideoOne,  recordVideoTwo, recordVideoThree]). then((messages) =>{
     console.log(messages)
     // This wil send an array of all the successful messsages from the promises
 })
@@ -86,3 +86,127 @@ promise.all([recordVideoOne,  recordVideoTwo, recordVideoThree]). then((messages
 
 //Another method that we can use is promise.race, which returns the result of one without waiting for the others
  
+
+//Another Example
+//this is a function that takes in the location as a parameter
+function makeRequest(location){
+    return new Promise((resolve, reject) => {
+        //console log that we are making an API request
+        console.log(`Making API request to ${location}`)
+
+        if (location === "Googlsse"){
+            resolve("Google says hi")
+        } else {
+            reject("I can only communicate with Google")
+        }
+
+    })
+}
+//another function that adds little information about the request being made
+function processRequest(response){
+    return new Promise((resolve, reject) => {
+        console.log("Processing respoonse")
+        // returns only a resolve
+        resolve("Extra information" + response)
+
+    })
+} 
+
+makeRequest("Google").then((response) =>{
+    console.log("This is the then message: "  + response)
+    return processRequest(response)
+
+}) .then(processedResponse => {
+    console.log(processedResponse)
+
+}). catch((err) =>{
+    console.log(err)
+
+})
+    
+
+
+
+
+//Async and await solves nesting problems
+//instead of using then and catch we simply use aync and await
+// the first thing to know is that you need to have some kind of function that youre awaiting the code inside, this is the async function
+// then you call different functions inside the aync function with await
+//we handle errors in async and await using try and catch
+
+async function doWork(){
+    try{
+        const response = await makeRequest("Google")
+    console.log("Response received")
+    const processedResponse = await processRequest(response)
+    console.log(processedResponse)
+
+    } catch(err){
+        console.log(err)
+    }
+    
+}
+
+doWork()
+
+
+
+//learning how to fetch API, we are going to be doing this using a fake api that returns users
+
+
+fetch("https://jsonplaceholder.typicode.com/posts",{
+    method: "POST",
+    headers:{ "Content-type" : "application/json"},
+    body: JSON.stringify({name : "user 1"})
+}).then(res => {
+   return res.json()
+}).then(data => console.log(data)).catch(err => {
+    console.log(err)
+})
+
+async function fetchAPI(){
+    try{
+        const postResponse = await fetch("https://jsonplaceholder.username.com/posts", {
+            method: "POST",
+            headers: {"Content-type": "application/json"},
+            body: JSON.stringify({
+                title: "Learning how to fetch API",
+                userId: 1,
+
+            })
+
+        })
+
+        const newPost = await postResponse.json()
+        console.log("POST RESULT", + newPost)
+    }
+    catch(error){
+        console.log(error)
+
+
+    }
+}
+
+fetchAPI()
+
+
+
+// practice API to generate random dog image
+const image = document.getElementById("dog-image")
+const btn = document.getElementById("fetch-btn")
+btn.addEventListener("click", getDog)
+
+
+async function getDog() {
+    try{
+        const dogFetch = await fetch("https://dog.ceo/api/breeds/image/random")
+        const postDogData = await dogFetch.json()
+        console.log(postDogData)
+       
+        const src = postDogData.message
+        console.log(src)
+        image.src = src
+    }
+    catch(error){console.log("There had been an error encountered")}
+}
+
